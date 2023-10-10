@@ -17,7 +17,7 @@ def test_is_record_type():
     assert is_record_type(lexicon_correct_post_record.value, models.AppBskyFeedPost) is True
     assert is_record_type(lexicon_correct_post_record.value, models.AppBskyFeedGenerator) is False
 
-    assert isinstance(extended_post_record.value, DotDict)
+    assert isinstance(extended_post_record.value, models.AppBskyFeedPost.Main)
     assert is_record_type(extended_post_record.value, models.ids.AppBskyFeedPost) is True
     assert is_record_type(extended_post_record.value, models.ids.AppBskyFeedGenerator) is False
     assert is_record_type(extended_post_record.value, models.AppBskyFeedPost) is True

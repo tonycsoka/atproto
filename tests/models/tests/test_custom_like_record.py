@@ -10,9 +10,10 @@ def test_custom_like_record_deserialization():
     model = get_or_create(TEST_DATA, models.ComAtprotoRepoGetRecord.Response)
 
     assert isinstance(model, models.ComAtprotoRepoGetRecord.Response)
-    assert isinstance(model.value, DotDict)
+    assert isinstance(model.value, models.AppBskyFeedLike.Main)
 
-    assert model.value['$type'] == models.ids.AppBskyFeedLike
+    assert model.value.py_type == models.ids.AppBskyFeedLike
+    assert model.value['py_type'] == models.ids.AppBskyFeedLike
     # record_type is the custom field out of lexicon
     assert model.value.record_type == 'app.bsky.feed.like'
     assert model.value['record_type'] == 'app.bsky.feed.like'
@@ -27,7 +28,8 @@ def test_custom_like_record_serialization():
     assert isinstance(get_model_as_dict(model.value), dict)
     assert model_dict == get_model_as_dict(restored_model)
 
-    assert restored_model.value['$type'] == models.ids.AppBskyFeedLike
+    assert restored_model.value.py_type == models.ids.AppBskyFeedLike
+    assert restored_model.value['py_type'] == models.ids.AppBskyFeedLike
     # record_type is the custom field out of lexicon
     assert restored_model.value.record_type == 'app.bsky.feed.like'
     assert restored_model.value['record_type'] == 'app.bsky.feed.like'
