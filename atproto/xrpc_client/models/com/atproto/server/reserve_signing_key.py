@@ -5,19 +5,13 @@
 ##################################################################
 
 
-import typing_extensions as te
 from pydantic import Field
 
 from atproto.xrpc_client.models import base
 
 
-class Main(base.RecordModelBase):
+class Response(base.ResponseModelBase):
 
-    """Record model for :obj:`app.bsky.graph.listblock`."""
+    """Output data model for :obj:`com.atproto.server.reserveSigningKey`."""
 
-    created_at: str = Field(alias='createdAt')  #: Created at.
-    subject: str  #: Subject.
-
-    py_type: te.Literal['app.bsky.graph.listblock'] = Field(
-        default='app.bsky.graph.listblock', alias='$type', frozen=True
-    )
+    signing_key: str = Field(alias='signingKey')  #: Public signing key in the form of a did:key.
